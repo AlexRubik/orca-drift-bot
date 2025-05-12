@@ -1,0 +1,84 @@
+{
+    "name": "your-node-app-name",
+    "version": "1.0.0",
+    "main": "src/index.ts",
+    "description": "Describe your app here.",
+    "dependencies": {
+        "@orca-so/whirlpools": "^1.0.3",
+        "@orca-so/whirlpools-client": "^1.0.3",
+        "@orca-so/whirlpools-core": "^1.0.3",
+        "@solana-program/compute-budget": "^0.6.1",
+        "@solana-program/system": "^0.6.2",
+        "@solana/kit": "^2.1.0",
+        "@solana/web3.js": "2",
+        "@types/bs58": "^4.0.4",
+        "@types/dotenv": "^8.2.3",
+        "@types/pg": "^8.11.10",
+        "bn.js": "^5.2.1",
+        "bs58": "^6.0.0",
+        "crypto-browserify": "^3.12.1",
+        "dotenv": "^16.4.7",
+        "gill": "^0.8.0",
+        "pg": "^8.13.1",
+        "ws": "^8.18.0"
+    },
+    "devDependencies": {
+        "@types/bn.js": "^5.1.6",
+        "@types/node": "latest",
+        "nodemon": "latest",
+        "prettier": "latest",
+        "prettify": "latest",
+        "ts-node": "latest",
+        "typescript": "^5.7.2"
+    },
+    "scripts": {
+        "prettier": "prettier --write \"**/*.ts\" \"**/*.js\" \"**/*.json\" \"**/*.css\"",
+        "prettify": "pretty-quick --staged",
+        "dev": "ts-node src/index.ts",
+        "test-math": "ts-node src/strats/lp-math.ts",
+        "test-ranger": "ts-node src/ranger/test.ts",
+        "test": "ts-node src/test.ts",
+        "backtest": "ts-node src/backtest/index.ts",
+        "start": "node --no-warnings --max-old-space-size=5000 --max-semi-space-size=32 --loader ts-node/esm src/index.ts --no-experimental-warnings",
+        "build": "tsc && cd drift-worker && yarn build && cd ..",
+        "compile": "nexe dist/index.js -o lp-bot-linux -t linux-x64-20.18.1 --build --resource \".env\" --resource \"node_modules/**/*\" --resource \"drift-worker/dist/**/*\" --resource \"drift-worker/node_modules/**/*\"",
+        "pkg": "pkg dist/index.js -o lp-bot -t node18-linux-x64 --max-old-space-size=20596 --public --public-packages \"*\"",
+        "debug-pkg": "pkg dist/index.js -o lp-bot -t node18-linux-x64 --debug --max-old-space-size=20596"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "yarn prettify"
+        }
+    },
+    "keywords": [
+        "node",
+        "ts",
+        "typescript"
+    ],
+    "author": {
+        "name": "author_name"
+    },
+    "browser": {
+        "crypto": false
+    },
+    "bin": "dist/src/index.js",
+    "pkg": {
+        "assets": [
+            "dist/**/*.js",
+            "config.json",
+            ".env",
+            "node_modules/crypto-browserify/**/*",
+            "node_modules/@solana/**/*"
+        ],
+        "scripts": [
+            "dist/**/*.js"
+        ],
+        "targets": [
+            "node18-linux-x64"
+        ],
+        "output": "lp-bot",
+        "options": [
+            "no-warnings"
+        ]
+    }
+}

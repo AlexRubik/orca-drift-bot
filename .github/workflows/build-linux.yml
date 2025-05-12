@@ -1,0 +1,30 @@
+name: Build Linux Executable
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.18.1
+    - name: Install dependencies
+      run: npm install
+    - name: Install Nexe globally
+      run: npm install -g nexe
+    - name: Build TypeScript
+      run: npm run build
+    - name: Build Linux executable
+      run: nexe dist/index.js -o lp-bot-linux -t linux-x64-20.18.1 --build --resource ".env" --resource "node_modules/crypto-browserify/**/*"
+    - name: Upload Linux artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: lp-bot-linux
+        path: lp-bot-linux
+        retention-days: 5

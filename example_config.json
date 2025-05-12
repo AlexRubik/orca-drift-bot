@@ -1,0 +1,11 @@
+{
+    "keypairPath": "./keypair.json",
+    "rpcUrl": "https://mainnet.helius-rpc.com/?api-key=abc123",
+    "checkIntervalMinutes": 1,
+    "poolAddress": "Czfq3xZZDmsdGdUyrNLtRhGc47cXcZtLG4crryfu44zE",
+    "rangeDeviationPercentAsDecimal": 0.03,
+    "targetPositionSizeUsd": 50,
+    "profitTargetAsDecimal": 0.002,
+    "usdcPercOfPositionSizeForShort": 0.25,
+    "strategy": 2
+} 

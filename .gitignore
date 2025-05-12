@@ -1,0 +1,22 @@
+# usual stuff
+node_modules
+dist
+
+# env
+.env
+
+# logs
+logs
+
+# build
+build
+
+# keypair
+keypair.json
+keypairtmr.json
+
+rpcs.json
+
+# config
+config.json
+rpcs.json
