@@ -20,3 +20,6 @@ rpcs.json
 # config
 config.json
 rpcs.json
+
+.github/workflows/build-arm.yml
+.github/workflows/build-linux.yml
